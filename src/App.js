@@ -1,26 +1,55 @@
 import React from 'react';
-import logo from './logo.svg';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+}
+from 'react-router-dom';
 import './App.css';
+import CountryDashboardApp from './components/Dashboard';
+import CountryDetails from './components/CountryDetails';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.themeOptions = {
+      light: {
+        id: "0",
+        themeClass: 'lightMode',
+        backgroundColor: "#ffffff",
+        color: '#0000'
+      },
+      dark: {
+        id: "1",
+        themeClass: 'darkMode',
+        backgroundColor: "#2b3945",
+        color: "#ffffff",
+      },
+    };
+    this.state = {
+      selectedTheme: this.themeOptions.light,
+    };
+  }
+  onChangeTheme = (selectedThemeOption) => {
+    this.setState({
+      selectedTheme: selectedThemeOption.id === '0' ? this.themeOptions.dark : this.themeOptions.light,
+    });
+  };
+
+  render() {
+    return (
+      <Router>
+          <Switch>
+            <Route exact path='/details/:alpha3code'>
+                <CountryDetails selectedTheme={this.state.selectedTheme} onChangeTheme={this.onChangeTheme} />
+            </Route>
+            <Route path='/'>
+                <CountryDashboardApp selectedTheme={this.state.selectedTheme} onChangeTheme={this.onChangeTheme} />
+            </Route>
+          </Switch>
+      </Router>
+    );
+  }
 }
 
 export default App;

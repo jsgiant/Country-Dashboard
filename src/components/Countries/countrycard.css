@@ -1,0 +1,33 @@
+.country-card {
+    width: 95%;
+    transition: all .4s ease-in-out;
+}
+
+.country-card-flag {
+    height: 180px;
+    object-fit: cover;
+}
+
+@media only screen and (min-width: 576px) {
+    .country-card {
+        width: 45%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .country-card {
+        width: 21.5%;
+    }
+
+}
+
+@media only screen and (min-width: 992px) {
+    .countries-list-container {
+        margin: 0 3%;
+    }
+
+    .country-card:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+}
