@@ -128,7 +128,7 @@ class CountryDashboardApp extends React.Component {
             </div>);
         }
         else {
-            return (<div className={`${currentTheme} d-flex flex-grow-1 w-100 justify-content-center mt-auto h-100 align-items-center`}>
+            return (<div className={`${currentTheme} dashboard-app d-flex flex-grow-1 w-100 justify-content-center align-items-center`}>
                            <h3>{this.state.error}</h3>
                         </div>);
         }
